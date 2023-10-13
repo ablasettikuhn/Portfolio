@@ -14,10 +14,12 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up R
-      uses: r-lib/actions/setup-r@v1
+      uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: 4.1.0
 
     - name: Install dependencies
       run: R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
 
     - name: Render Rmd
-      run: R -e 'rmarkdown::render("GitHub/Portfolio/Google DA Case Study.Rmd")'
+      run: R -e 'rmarkdown::render("Google DA Case Study.Rmd")'
