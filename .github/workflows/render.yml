@@ -1,0 +1,23 @@
+name: Render Rmd to HTML
+
+on:
+  push:
+    branches:
+      - main # Replace with your default branch
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up R
+      uses: r-lib/actions/setup-r@v1
+
+    - name: Install dependencies
+      run: R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
+
+    - name: Render Rmd
+      run: R -e 'rmarkdown::render("Google DA Case Study.Rmd")'
