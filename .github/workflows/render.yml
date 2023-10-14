@@ -23,6 +23,9 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y pandoc
 
+    - name: Install Tidyverse # Add this step to install 'tidyverse'
+      run: R -e 'install.packages("tidyverse")'
+      
     - name: Install R packages
       run: R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
 
