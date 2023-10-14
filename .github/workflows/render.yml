@@ -12,11 +12,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        node-version: '16'
 
     - name: Set up R
-      uses: r-lib/actions/setup-r@v2
+      uses: r-lib/actions/setup-r@v1
       with:
         r-version: 4.1.0
 
@@ -26,7 +24,7 @@ jobs:
         sudo apt-get install -y pandoc
 
     - name: Install dependencies
-      run: R -e 'install.packages(c("rmarkdown", "knitr", "shiny", "ISAR", "tidyverse", "skimr"))'
+      run: R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
 
     - name: Render Rmd
       run: R -e 'rmarkdown::render("Google DA Case Study.Rmd")'
