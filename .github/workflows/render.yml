@@ -27,4 +27,4 @@ jobs:
       run: R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
 
     - name: Render Rmd
-      run: R -e 'rmarkdown::render("Google DA Case Study.Rmd")'
+      run: R -e 'rmarkdown::render("Portfolio/Google DA Case Study.Rmd")'
