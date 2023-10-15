@@ -27,7 +27,7 @@ jobs:
         R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
 
     - name: Render Rmd
-      run: R -e 'rmarkdown::render("Google_DA_Capstone_Project.Rmd')'
+      run: Rscript -e 'rmarkdown::render("Google_DA_Capstone_Project.Rmd')'
 
     - name: Move HTML file to root directory
       run: mv Google_DA_Capstone_Project.html .
