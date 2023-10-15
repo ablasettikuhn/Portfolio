@@ -3,11 +3,11 @@ name: Render Rmd to HTML
 on:
   push:
     branches:
-      - main # Replace with default branch
+      - main # Replace with your default branch
 
 jobs:
   render:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
@@ -20,25 +20,22 @@ jobs:
 
     - name: Install Pandoc
       run: |
-        sudo apt-get update
-        sudo apt-get install -y pandoc
+        choco install pandoc
 
-    - name: Install Tidyverse # Add this step to install 'tidyverse'
-      run: R -e 'install.packages("tidyverse")'
-      
-    - name: Install R packages
-      run: R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
+    - name: Install dependencies
+      run: |
+        R -e 'install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))'
 
-    - name: Render Rmd to HTML
-      run: R -e 'rmarkdown::render("Google_DA_Capstone_Project.Rmd")'
-      
-    - name: Move HTML file to docs folder
-      run: mv Google_DA_Capstone_Project.html docs/
-      
+    - name: Render Rmd
+      run: R -e 'rmarkdown::render("Google_DA_Capstone_Project.Rmd')'
+
+    - name: Move HTML file to root directory
+      run: mv Google_DA_Capstone_Project.html .
+
     - name: Commit and push rendered HTML
       run: |
         git config user.name "ablasettikuhn"
         git config user.email "alex_blasetti@hotmail.com"
-        git add docs/Google_DA_Capstone_Project.html
+        git add Google_DA_Capstone_Project.html
         git commit -m "Render and publish HTML file"
         git push
