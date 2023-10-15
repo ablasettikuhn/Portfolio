@@ -14,20 +14,18 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up R
-      uses: r-lib/actions/setup-r@v2
+      uses: virtual-lab/setup-r@v1
       with:
-        r-version: 4.3.1
+        r-version: 4.1.0
 
     - name: Install Pandoc
       run: choco install pandoc
 
     - name: Install dependencies
-      run: |
-        R -e "install.packages(c('rmarkdown', 'shiny', 'ISAR', 'tidyverse', 'skimr'))"
+      run: R -e "install.packages(c('rmarkdown', 'shiny', 'ISAR', 'tidyverse', 'skimr'))"
 
     - name: Render Rmd
-      run: |
-        R -e "rmarkdown::render('Google_DA_Capstone_Project.Rmd')"
+      run: R -e "rmarkdown::render('Google_DA_Capstone_Project.Rmd')"
 
     - name: Move HTML file to root directory
       run: mv Google_DA_Capstone_Project.html .
