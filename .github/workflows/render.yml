@@ -22,10 +22,12 @@ jobs:
       run: choco install pandoc
 
     - name: Install dependencies
-      run: '"C:\\Program Files\\R\\R-4.3.1\\bin\\x64\\R" -e "install.packages(c(\'rmarkdown\', \'shiny\', \'ISAR\', \'tidyverse\', \'skimr\'))"'
+      run: |
+        "C:\\Program Files\\R\\R-4.3.1\\bin\\x64\\R" -e "install.packages(c('rmarkdown', 'shiny', 'ISAR', 'tidyverse', 'skimr'))"
 
     - name: Render Rmd
-      run: '"C:\\Program Files\\R\\R-4.3.1\\bin\\x64\\Rscript" -e "rmarkdown::render(\'Google_DA_Capstone_Project.Rmd\')"'
+      run: |
+        "C:\\Program Files\\R\\R-4.3.1\\bin\\x64\\Rscript" -e "rmarkdown::render('Google_DA_Capstone_Project.Rmd')"
 
     - name: Move HTML file to root directory
       run: mv Google_DA_Capstone_Project.html .
