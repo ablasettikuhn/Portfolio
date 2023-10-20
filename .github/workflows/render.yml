@@ -3,28 +3,37 @@ name: Render Rmd to HTML
 on:
   push:
     branches:
-      - main # Replace with your default branch
+      - main
 
 jobs:
   render:
-    runs-on: windows-latest # Use the Windows runner
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
     - name: Set up R
-      uses: r-lib/actions/setup-r@v2
+      uses: virtual-lab/setup-r@v1
       with:
-        r-version: 4.3.1
+        r-version: 4.1.0
 
-    - name: Install Pandoc # Add this step to install Pandoc
-      run: |
-        # You don't need sudo on Windows
-        choco install pandoc
+    - name: Install Pandoc
+      run: choco install pandoc
 
     - name: Install dependencies
-      run: R -e "install.packages(c("rmarkdown", "shiny", "ISAR", "tidyverse", "skimr"))"
+      run: R -e "install.packages(c('rmarkdown', 'shiny', 'ISAR', 'tidyverse', 'skimr'))"
 
     - name: Render Rmd
-      run: R -e 'rmarkdown::render("Google_DA_Capstone_Project.Rmd")'
+      run: R -e "rmarkdown::render('Google_DA_Capstone_Project.Rmd')"
+
+    - name: Move HTML file to root directory
+      run: mv Google_DA_Capstone_Project.html .
+
+    - name: Commit and push rendered HTML
+      run: |
+        git config user.name "ablasettikuhn"
+        git config user.email "alex_blasetti@hotmail.com"
+        git add Google_DA_Capstone_Project.html
+        git commit -m "Render and publish HTML file"
+        git push
