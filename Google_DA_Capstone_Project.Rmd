@@ -2,7 +2,6 @@
 title: "Google Data Analytics Capstone Project: NBA Denver Nuggets Shots"
 subtitle: "Alexandra Blasetti Kuhn"
 output: html_document
-runtime: shiny
 owner: Alexandra Blasetti Kuhn
 date: "2023-10-07"
 ---
@@ -151,9 +150,7 @@ Based on the Spearman's rank correlation analysis, there is a statistically sign
 
 The large test statistic (S = 3.9396e+13) provides strong evidence against the null hypothesis H0. This means that the observed correlation is unlikely to be due to random chance. We reject H0 and accept H2.
 
-In practice, the analysis suggests that as the remaining seconds in a basketball game increase, there is a tendency for the efficiency rate to also increase, although the relationship is weak. 
-
-<!--This information can be valuable for basketball teams and coaches in understanding the dynamics of the game and making strategic decisions based on the remaining time and efficiency rate.-->
+In practice, the analysis suggests that as the remaining seconds in a basketball game increase, there is a tendency for the efficiency rate to also increase, although the relationship is weak. This information can be valuable for basketball teams and coaches in understanding the dynamics of the game and making strategic decisions based on the remaining time and efficiency rate.
 
 \
 
@@ -182,7 +179,7 @@ In practice, the analysis suggests that as the distance shot in a basketball gam
 
 The data analyst decided to test Pearson's Correlation Coefficient despite the data is not normally distributed just for curiosity.This decision to test Pearson's Correlation Coefficient despite the not normal distribution, yielded surprising outcomes. This highlights the importance of exploring relationships between variables even in non-ideal conditions and being open to unexpected findings.
 
-```{r}
+```{r, echo=FALSE}
 cor.test(nba_nuggets_shots$distanceShot, EffRate, method = "pearson")
 cor.test(nba_nuggets_shots$minutesRemaining, EffRate, method = "pearson")
 cor.test(nba_nuggets_shots$secondsRemaining, EffRate, method = "pearson")
@@ -235,13 +232,13 @@ ggplot(nba_nuggets_shots, aes(x = secondsRemaining, fill = isShotMade)) + geom_b
 ggplot(nba_nuggets_shots, aes(x = distanceShot, y = isShotMade, fill = isShotMade)) + geom_boxplot() + stat_summary(fun = mean, geom = "point", shape = 23, size = 2, fill = "black", position = position_dodge(width = 0.75)) + scale_fill_manual(values = c("tomato", "palegreen")) + labs(x = "Distance Shot", y = "Is Shot Made", fill = "Is Shot Made?") + ggtitle("Distribution of Distance Shot by Efficiency Rate") + facet_wrap(~yearSeason, ncol=3)
 ```
 
-The main coach wants to see the changes throughout the years, however, this visualization can be simplified. We are going to create an interactive dashboard to better understand the box plots of distance shot and efficiency rate from 2015 to 2023.
+The main coach wants to see the changes throughout the years, however, the visualization above is not easy to understand. It can be simplified with an Interactive Dashboard by year. The link below shows the distribution of distance shot and efficiency rate from 2015 to 2023.
 
-## Interactive Dashboard created with shiny
+> [**CLICK HERE**](https://ablasettikuhn.shinyapps.io/dashboard-app/) to access the Interactive Dashboard created with Shiny and hosted on Shinyapps.io.
 
-First we need to define the UI:
+<!--First we need to define the UI:
 
-```{r}
+`
 library(shiny)
 ui <- fluidPage(
 titlePanel("Interactive Dashboard"),
@@ -256,11 +253,12 @@ plotOutput("plot")
 )
 )
 )
-```
+`
 
-Second we need to define the server logic and third run the shinyApp: `shinyApp(ui, server)`. By defining `runtime: shiny` in the YAML, the dashboard is displayed in the html document.
+Second we need to define the server logic and third run the shinyApp: `shinyApp(ui, server)`. By defining `output: html_document`, `runtime: shiny` in the YAML, the dashboard is displayed in the html document (only visualizations in Rstudio)
 
-```{r}
+`
+library(shiny)
 server <- function(input, output) {
   output$plot <- renderPlot({
     filtered_data <- nba_nuggets_shots[nba_nuggets_shots$yearSeason == input$year, ]
@@ -273,9 +271,9 @@ server <- function(input, output) {
   })
 }
 shinyApp(ui, server)
-```
+`
 
-> The slidebar selects the desired year throughout the years 2015 to 2023. We can now see the distribution of distance shot and efficiency rate for each year. To understand the dashboard by year, recall that 1) The boxes represent the interquartile range (0.25 to 0.75 percent of the observations), filled in green for shots made and red for shots missed. 2) The vertical line inside the box represents the median (0.50 of the observations). The black diamond represents the mean. 3) The black points represent outliers, with more shots missed in long distances and a few shots converted in long distances.
+> The slidebar selects the desired year throughout the years 2015 to 2023. We can now see the distribution of distance shot and efficiency rate for each year. To understand the dashboard by year, recall that 1) The boxes represent the interquartile range (0.25 to 0.75 percent of the observations), filled in green for shots made and red for shots missed. 2) The vertical line inside the box represents the median (0.50 of the observations). The black diamond represents the mean. 3) The black points represent outliers, with more shots missed in long distances and a few shots converted in long distances.-->
 
 \
 
