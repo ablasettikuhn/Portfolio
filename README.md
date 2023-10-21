@@ -1,4 +1,4 @@
-### This Portfolio was deveoped in Rstudio
+#### *This project was deveoped in RStudio and Shinyapps.
  
 <!DOCTYPE html>
 
