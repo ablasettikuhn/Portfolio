@@ -1,4 +1,4 @@
-#### *This project was deveoped in RStudio and Shinyapps. https://ablasettikuhn.github.io/Professional-Project-1/
+#### *This project was deveoped in RStudio and Shinyapps. [https://ablasettikuhn.github.io/Professional-Project-1/]
  
 <!DOCTYPE html>
 
