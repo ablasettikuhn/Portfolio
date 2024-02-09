@@ -361,12 +361,17 @@ Denver Nuggets Shots</h1>
 
 <p><br />
 </p>
+<p>This project follows the 6 data analysis phases from Google Data
+Analytics Certification: Ask, Prepare, Process, Analyze, Share and
+Act.</p>
+<p><br />
+</p>
 <div id="ask-phase" class="section level1">
 <h1>Ask Phase</h1>
 <hr style="border: 1px solid black;">
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>The coach of the team want to understand the effect of some time and
+<p>The coach of the team wants to understand the effect of some time and
 location conditionals on the shot conversion from 2015 to 2023.</p>
 <p>Specifically, He wants to understand what’s the relationship between
 the time/location of the shot and the shot conversion from 2015 to
@@ -389,8 +394,8 @@ years 2015-2023.</p>
 <h2>Hypothesis</h2>
 <p>Hypothesis: IF the minutes left, seconds left and distance shot* have
 an effect on shot conversion, THEN there is a relationship between these
-conditionals and the and the efficiency rate. This is the alternative
-hypothesis (H1), while the null hypothesis (H0) states that there is no
+conditionals and the efficiency rate. This is the alternative hypothesis
+(H1), while the null hypothesis (H0) states that there is no
 relationship between the variables. *these conditionals in the main
 hypothesis will be evaluated as H1, H2 and H3.</p>
 <p><br />
@@ -402,20 +407,20 @@ hypothesis will be evaluated as H1, H2 and H3.</p>
 <hr style="border: 1px solid black;">
 <div id="data-sources" class="section level2">
 <h2>Data Sources</h2>
-<p>The data is provided directly from <a href="https://www.nba.com/stats" class="uri">https://www.nba.com/stats</a> It is public and accessible in
-the R package “ISAR”, data in nba_nuggets_shots.</p>
+<p>The data is provided directly from <a href="https://www.nba.com/stats" class="uri">https://www.nba.com/stats</a>. It is public and accessible
+in the R package “ISAR”, data in nba_nuggets_shots.</p>
 <p>The data set contains seven seasons of Denver Nuggets shot data from
 2015 to 2023. It follows the ROCCC premises (the data is from a reliable
 organization, original, comprehensive, current, and cited)</p>
 <p>Source: <a href="http://asbcllc.com/nbastatR/reference/teams_shots.html" class="uri">http://asbcllc.com/nbastatR/reference/teams_shots.html</a>
 Credits and owner: nba_nuggets_shots, ISAR package, NBA.</p>
-<pre><code>## ── Attaching core tidyverse packages ──────────────────────────── tidyverse 2.0.0 ──
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ## ✔ dplyr     1.1.3     ✔ readr     2.1.4
 ## ✔ forcats   1.0.0     ✔ stringr   1.5.0
 ## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
 ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
 ## ✔ purrr     1.0.2     
-## ── Conflicts ────────────────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
@@ -474,14 +479,14 @@ the %&gt;%</p>
 <pre class="r"><code>unique(nba_nuggets_shots$minutesRemaining)</code></pre>
 <pre><code>##  [1] 11 10  9  8  7  5  4  3  2  1  0  6 12</code></pre>
 <pre class="r"><code>unique(nba_nuggets_shots$secondsRemaining)</code></pre>
-<pre><code>##  [1] 25 23 55 31 51 57 10 42 19 56  1 26 35  0 49 41  4 52 17  7 53  9 37 24 20 50
-## [27] 14 30  6 27 45 21 15 13 38 46  8 47 16 36 34 48 12 32  2 39 22 43 40 58 29 28
-## [53] 33  5 59 18 44 54 11  3</code></pre>
+<pre><code>##  [1] 25 23 55 31 51 57 10 42 19 56  1 26 35  0 49 41  4 52 17  7 53  9 37 24 20
+## [26] 50 14 30  6 27 45 21 15 13 38 46  8 47 16 36 34 48 12 32  2 39 22 43 40 58
+## [51] 29 28 33  5 59 18 44 54 11  3</code></pre>
 <pre class="r"><code>unique(nba_nuggets_shots$distanceShot)</code></pre>
-<pre><code>##  [1] 24  0  2 13 19  1  3 17 16  7 25 18 20 23 21 26  5 12 15  4 14 22  9  6 11  8
-## [27] 29 53 27 10 40 48 28 56 33 44 30 62 36 32 47 54 55 50 79 43 46 84 39 31 64 51
-## [53] 42 34 35 52 57 70 74 67 69 72 45 37 66 38 58 59 65 77 49 78 61 75 82 63 68 41
-## [79] 83 60 81 80</code></pre>
+<pre><code>##  [1] 24  0  2 13 19  1  3 17 16  7 25 18 20 23 21 26  5 12 15  4 14 22  9  6 11
+## [26]  8 29 53 27 10 40 48 28 56 33 44 30 62 36 32 47 54 55 50 79 43 46 84 39 31
+## [51] 64 51 42 34 35 52 57 70 74 67 69 72 45 37 66 38 58 59 65 77 49 78 61 75 82
+## [76] 63 68 41 83 60 81 80</code></pre>
 <pre class="r"><code>unique(nba_nuggets_shots$isShotAttempted)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>unique(nba_nuggets_shots$isShotMade)</code></pre>
@@ -489,8 +494,8 @@ the %&gt;%</p>
 <p>To pull out a brief summary of the variables we want to analyze,
 <code>summary()</code> or <code>skim()</code> functions are both good
 options. With the skim function we have a visual idea of the data
-distribution. The Visualizations were examined with hist() function
-too.</p>
+distribution. The Visualizations were also examined with hist()
+function.</p>
 <pre class="r"><code>nba_nuggets_shots %&gt;% select(yearSeason, minutesRemaining, secondsRemaining, distanceShot, isShotAttempted, isShotMade) %&gt;% skim()</code></pre>
 <table>
 <caption>Data summary</caption>
@@ -675,8 +680,8 @@ variables.</strong></p>
 <p>We are going to perform the correlation test between minutes
 remaining and efficiency rate and store the results as H1:</p>
 <pre class="r"><code>H1 &lt;- cor.test(nba_nuggets_shots$minutesRemaining, EffRate, method = &quot;spearman&quot;)</code></pre>
-<pre><code>## Warning in cor.test.default(nba_nuggets_shots$minutesRemaining, EffRate, : Cannot
-## compute exact p-value with ties</code></pre>
+<pre><code>## Warning in cor.test.default(nba_nuggets_shots$minutesRemaining, EffRate, :
+## Cannot compute exact p-value with ties</code></pre>
 <pre class="r"><code>H1</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
@@ -695,13 +700,15 @@ statistically significant correlation between the variables
 positive monotonic relationship between the remaining minutes in a
 basketball game and the efficiency rate. (warning: correlation does not
 mean causation).</p>
-<p>The large test statistic (S = 3.9314e+13) provides strong evidence
-against the null hypothesis H0. This means that the observed correlation
+<p>The large test statistic S provides strong evidence against the null
+hypothesis H0 (S = 3.9314e+13). This means that the observed correlation
 is unlikely to be due to random chance. We reject H0 and accept H1.</p>
-<p>In practice, the analysis suggests that as the remaining minutes in a
-basketball game increase, there is a tendency for the efficiency rate to
-also increase, although the relationship is weak.</p>
-<!--This information can be valuable for basketball teams and coaches in understanding the dynamics of the game and making strategic decisions based on the remaining time and efficiency rate.-->
+<p><em>In practice, the analysis suggests that the greater the number of
+remaining minutes in a basketball game, there is a tendency for the
+efficiency rate to also increase, although the relationship is weak.
+This information can be valuable for basketball teams and coaches in
+understanding the dynamics of the game and making strategic decisions
+based on the remaining time and efficiency rate.</em></p>
 <p><br />
 </p>
 <p><strong>H2: IF the seconds left have an effect on shot conversion,
@@ -711,8 +718,8 @@ variables.</strong></p>
 <p>We are going to perform the correlation test between seconds
 remaining and efficiency rate and store the results as H2:</p>
 <pre class="r"><code>H2 &lt;- cor.test(nba_nuggets_shots$secondsRemaining, EffRate, method = &quot;spearman&quot;)</code></pre>
-<pre><code>## Warning in cor.test.default(nba_nuggets_shots$secondsRemaining, EffRate, : Cannot
-## compute exact p-value with ties</code></pre>
+<pre><code>## Warning in cor.test.default(nba_nuggets_shots$secondsRemaining, EffRate, :
+## Cannot compute exact p-value with ties</code></pre>
 <pre class="r"><code>H2</code></pre>
 <pre><code>## 
 ##  Spearman&#39;s rank correlation rho
@@ -731,15 +738,15 @@ statistically significant correlation between the variables
 positive monotonic relationship between the remaining seconds in a
 basketball game and the efficiency rate. (warning: correlation does not
 mean causation).</p>
-<p>The large test statistic (S = 3.9396e+13) provides strong evidence
-against the null hypothesis H0. This means that the observed correlation
+<p>The large test statistic S provides strong evidence against the null
+hypothesis H0 (S = 3.9396e+13). This means that the observed correlation
 is unlikely to be due to random chance. We reject H0 and accept H2.</p>
-<p>In practice, the analysis suggests that as the remaining seconds in a
-basketball game increase, there is a tendency for the efficiency rate to
-also increase, although the relationship is weak. This information can
-be valuable for basketball teams and coaches in understanding the
-dynamics of the game and making strategic decisions based on the
-remaining time and efficiency rate.</p>
+<p><em>In practice, the analysis suggests that the greater the number of
+remaining seconds in a basketball game, there is a tendency for the
+efficiency rate to also increase, although the relationship is weak.
+This information can be valuable for basketball teams and coaches in
+understanding the dynamics of the game and making strategic decisions
+based on the remaining time and efficiency rate.</em></p>
 <p><br />
 </p>
 <p><strong>H3: IF the distance shot has an effect on shot conversion,
@@ -769,12 +776,12 @@ statistically significant correlation between the variables
 negative monotonic relationship between the distance shot in a
 basketball game and the efficiency rate. (warning: correlation does not
 mean causation).</p>
-<p>The large test statistic (S = 4.989e+13) provides strong evidence
-against the null hypothesis H0. This means that the observed correlation
+<p>The large test statistic S provides strong evidence against the null
+hypothesis H0 (S = 4.989e+13). This means that the observed correlation
 is unlikely to be due to random chance. We reject H0 and accept H3.</p>
-<p>In practice, the analysis suggests that as the distance shot in a
-basketball game decreases, there is a tendency for the efficiency rate
-to increase, although the relationship is weak.</p>
+<p><em>In practice, the analysis suggests that the shorter the distance
+shot in a basketball game, there is a tendency for the efficiency rate
+to increase, although the relationship is weak.</em></p>
 <blockquote>
 <p>Note: Considering the main hypothesis and the correlation coefficient
 obtained in minutes remaining, seconds remaining and distance shot, we
@@ -885,8 +892,8 @@ on the efficiency rate. The bars represent the count of shots converted
 in green and shots missed in red, based on the minutes left. The first
 tall bar shows a higher number of shots missed when there is 1 minute
 left. The last two bars show a smaller number of shots missed when there
-are 11 minutes left and all shots missed when the game quarter starts
-(12 minutes left).</p>
+are 11 minutes left, and no shots when the game quarter starts (12
+minutes left).</p>
 </blockquote>
 <p><br />
 </p>
@@ -900,7 +907,7 @@ are 11 minutes left and all shots missed when the game quarter starts
 on the efficiency rate. The bars represent the count of shots converted
 in green and shots missed in red, based on the seconds left. The first
 tall bar shows a higher number of shots missed when there are between 1
-and 1.5 seconds left. also, the shots made are higher when there are
+and 1.5 seconds left. Also, the shots made are higher when there are
 between 1 and 1.5 seconds left. The last bar shows there are no shots
 when the game countdown clock starts (60 seconds left).</p>
 </blockquote>
