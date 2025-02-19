@@ -1,2 +1,2 @@
-#### *This project was deveoped in RStudio and Shinyapps. Last update: 2024-Feb-19
+#### *This project was developed in Quarto (Report) and Shiny (Interactive Dashboard) using R programming language. Last update: 2025-Jan-17
 **https://ablasettikuhn.github.io/Professional-Project-1/**
